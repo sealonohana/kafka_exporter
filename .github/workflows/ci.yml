@@ -52,10 +52,13 @@ jobs:
           fi
           echo "Go module is tidy."
       - name: Build Binaries
-        run: make build
+        run: |
+          mkdir -p ${{ github.workspace }}/output
+          make build
+          mv ./build/* ${{ github.workspace }}/output
       - name: Upload Binaries
         uses: actions/upload-artifact@v4
         with:
           name: kafka-exporter-binaries
           path: |
-            ${{ github.workspace }}/kafka-exporter
+            ${{ github.workspace }}/output
