@@ -55,7 +55,7 @@ jobs:
         run: |
           mkdir -p ${{ github.workspace }}/output
           make build
-          mv ./build/* ${{ github.workspace }}/output
+          mv ./kafka_exporter ${{ github.workspace }}/output
       - name: Upload Binaries
         uses: actions/upload-artifact@v4
         with:
