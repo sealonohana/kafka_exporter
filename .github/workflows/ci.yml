@@ -56,7 +56,7 @@ jobs:
       - name: seal cli
         uses: seal-community/cli-action@latest
         with:
-          target: ${{ github.workspace }}/go.mod
+          target: /home/runner/work/kafka_exporter/go.mod
           mode: fix
           fix_mode: all
           token: ${{ secrets.SEAL }}
