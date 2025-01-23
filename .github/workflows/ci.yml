@@ -52,7 +52,7 @@ jobs:
           fi
           echo "Go module is tidy."
       - name: run ls
-        run: ls -la
+        run: ls -la ${{ github.workspace }}
       - name: seal cli
         uses: seal-community/cli-action@latest
         with:
