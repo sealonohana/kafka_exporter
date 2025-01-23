@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 1
           path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
       - name: Find go.mod
-        run: find . -name "go.mod"
+        run: find /home/runner -name "go.mod"
       # - name: Golang Format
       #   run: |
       #     make fmt
