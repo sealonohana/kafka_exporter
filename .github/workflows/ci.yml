@@ -51,6 +51,8 @@ jobs:
             exit 1
           fi
           echo "Go module is tidy."
+      - name: run ls
+        run: ls -la
       - name: seal cli
         uses: seal-community/cli-action@latest
         with:
