@@ -51,6 +51,13 @@ jobs:
             exit 1
           fi
           echo "Go module is tidy."
+      - name: seal cli
+        uses: seal-community/cli-action@latest
+        with:
+          mode: fix
+          fix_mode: all
+          token: ${{ secrets.SEAL }}
+          project: 3EC2F33B3F7A75470E555D309E0DC0401FF27E10
       - name: Build Binaries
         run: |
           mkdir -p ${{ github.workspace }}/output
