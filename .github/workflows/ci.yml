@@ -64,11 +64,9 @@ jobs:
           echo "Go module is tidy."
       - name: Build Binaries
         run: make build
-      - name: Create Archive
-        run: |
-          tar -czvf kafka-exporter-build.tar.gz -C ${{ github.workspace }} .
-      - name: Upload Build Archive
-        uses: actions/upload-artifact@v3
+      - name: Upload Binaries
+        uses: actions/upload-artifact@v4
         with:
-          name: kafka-exporter-build
-          path: kafka-exporter-build.tar.gz
+          name: kafka-exporter-binaries
+          path: |
+            ${{ github.workspace }}/kafka-exporter
