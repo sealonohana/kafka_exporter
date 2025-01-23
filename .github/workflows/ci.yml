@@ -31,46 +31,46 @@ jobs:
           path: ${{ env.GOPATH }}/src/github.com/${{ github.repository }}
       - name: Find go.mod
         run: find /home/runner -name "go.mod"
-      # - name: Golang Format
-      #   run: |
-      #     make fmt
-      #     STATUS=$(git status --porcelain go.mod go.sum)
-      #     if [ ! -z "$STATUS" ]; then
-      #       echo "Running 'make fmt' to format your codes"
-      #       exit 1
-      #     fi
-      # - name: Golang Lint
-      #   run: make lint
-      # - name: Golang Vet
-      #   run: make vet
-      # - name: Tidy Go Module
-      #   run: |
-      #     echo "Verifying if there is any unused dependency in go module"
-      #     make tidy
-      #     STATUS=$(git status --porcelain go.mod go.sum)
-      #     if [ ! -z "$STATUS" ]; then
-      #       echo "Running 'make tidy' to fix your 'go.mod' and/or 'go.sum'"
-      #       exit 1
-      #     fi
-      #     echo "Go module is tidy."
-      # - name: run ls
-      #   run: ls -la ${{ github.workspace }}
-      # - name: seal cli
-      #   uses: seal-community/cli-action@latest
-      #   with:
-      #     target: /home/runner/work/kafka_exporter/go.mod
-      #     mode: fix
-      #     fix_mode: all
-      #     token: ${{ secrets.SEAL }}
-      #     project: 3EC2F33B3F7A75470E555D309E0DC0401FF27E10
-      # - name: Build Binaries
-      #   run: |
-      #     mkdir -p ${{ github.workspace }}/output
-      #     make build
-      #     mv ./kafka_exporter ${{ github.workspace }}/output
-      # - name: Upload Binaries
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: kafka-exporter-binaries
-      #     path: |
-      #       ${{ github.workspace }}/output
+      - name: Golang Format
+        run: |
+          make fmt
+          STATUS=$(git status --porcelain go.mod go.sum)
+          if [ ! -z "$STATUS" ]; then
+            echo "Running 'make fmt' to format your codes"
+            exit 1
+          fi
+      - name: Golang Lint
+        run: make lint
+      - name: Golang Vet
+        run: make vet
+      - name: Tidy Go Module
+        run: |
+          echo "Verifying if there is any unused dependency in go module"
+          make tidy
+          STATUS=$(git status --porcelain go.mod go.sum)
+          if [ ! -z "$STATUS" ]; then
+            echo "Running 'make tidy' to fix your 'go.mod' and/or 'go.sum'"
+            exit 1
+          fi
+          echo "Go module is tidy."
+      - name: run ls
+        run: ls -la ${{ github.workspace }}
+      - name: seal cli
+        uses: seal-community/cli-action@latest
+        with:
+          target: /home/runner/work/kafka_exporter/kafka_exporter/src/github.com/sealonohana/kafka_exporter/go.mod
+          mode: fix
+          fix_mode: all
+          token: ${{ secrets.SEAL }}
+          project: 3EC2F33B3F7A75470E555D309E0DC0401FF27E10
+      - name: Build Binaries
+        run: |
+          mkdir -p ${{ github.workspace }}/output
+          make build
+          mv ./kafka_exporter ${{ github.workspace }}/output
+      - name: Upload Binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: kafka-exporter-binaries
+          path: |
+            ${{ github.workspace }}/output
