@@ -820,7 +820,7 @@ func setup(
 	}
 	defer klog.Flush()
 
-	klog.V(INFO).Infoln("Starting kafka_exporter", version.Info())
+	klog.V(INFO).Infoln("Starting kafka_exporter (version=1.8.0, branch=HEAD, revision=477643dd764c46ddd804ac4bd4022be877e3085b)")
 	klog.V(DEBUG).Infoln("Build context", version.BuildContext())
 
 	clusterBrokers = prometheus.NewDesc(
